@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ordunuz shop</title>
+    <!-- Font Awesome İkon Kütüphanesi -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* BASE & RESET */
+        /* SIFIRLAMA VE TEMEL BİLGİLER */
         * {
             margin: 0;
             padding: 0;
@@ -19,14 +20,13 @@
             background-color: #0b0f19;
             color: #ffffff;
             min-height: 100vh;
-            padding-bottom: 40px;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* NAVBAR */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* HEADER / NAVBAR */
+        header {
+            width: 100%;
             padding: 20px 8%;
             background: rgba(15, 23, 42, 0.9);
             border-bottom: 1px solid rgba(0, 240, 255, 0.2);
@@ -34,6 +34,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
@@ -48,369 +51,47 @@
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         }
 
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .search-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 12px;
-            color: #00f0ff;
-        }
-
-        .search-box input {
-            background: rgba(11, 15, 25, 0.8);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 8px;
-            padding: 9px 12px 9px 35px;
-            color: #fff;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .search-box input:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-        }
-
-        .fav-btn-nav {
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid #00f0ff;
-            color: #00f0ff;
-            padding: 9px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-        }
-
-        .fav-btn-nav:hover, .fav-btn-nav.active {
-            background: #00f0ff;
-            color: #0b0f19;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
-        }
-
-        /* FILTER BUTTONS */
-        .filter-section {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            padding: 0 5%;
-        }
-
-        .filter-btn {
-            background: #111827;
-            border: 1px solid #1f2937;
-            color: #9ca3af;
-            padding: 10px 22px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            border-color: #00f0ff;
-            color: #00f0ff;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-            background: rgba(0, 240, 255, 0.05);
-        }
-
-        /* GRID & CARDS */
-        .container {
+        /* ANA İÇERİK ALANI (BOŞ ALAN) */
+        main {
+            flex: 1;
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 40px 20px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: #111827;
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #00f0ff;
-            box-shadow: 0 8px 20px rgba(0, 240, 255, 0.2);
-        }
-
-        .fav-icon-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 5;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .fav-icon-btn.active {
-            color: #ff3b5c;
-            border-color: #ff3b5c;
-            background: rgba(255, 59, 92, 0.2);
-        }
-
-        .card-img {
+        /* FOOTER */
+        footer {
             width: 100%;
-            height: 180px;
-            background: #1f2937;
-            overflow: hidden;
-        }
-
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-content {
             padding: 20px;
-        }
-
-        .card-content h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: #f3f4f6;
-        }
-
-        .price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #00f0ff;
-            margin-bottom: 15px;
-        }
-
-        .buy-btn {
-            display: block;
             text-align: center;
-            background: transparent;
-            border: 1px solid #00f0ff;
-            color: #00f0ff;
-            padding: 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .buy-btn:hover {
-            background: #00f0ff;
-            color: #0b0f19;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
-        }
-
-        .no-results {
-            text-align: center;
-            color: #9ca3af;
-            margin-top: 40px;
-            font-size: 1.2rem;
+            background: #0f172a;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #6b7280;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header & Nav -->
-    <header class="navbar">
+    <!-- Header / Logo Alanı -->
+    <header>
         <div class="logo">ordunuz<span>shop</span></div>
-        <div class="nav-controls">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="İlan ara..." onkeyup="filterItems()">
-            </div>
-            <button class="fav-btn-nav" onclick="filterFavorites()">
-                <i class="fa-solid fa-heart"></i> Favoriler (<span id="favCount">0</span>)
-            </button>
-        </div>
+        <!-- İleride ekleyeceğin menü veya butonlar buraya gelecek -->
     </header>
 
-    <!-- Kategori Filtreleri -->
-    <section class="filter-section">
-        <button class="filter-btn active" onclick="filterCategory('all', this)">Tümü</button>
-        <button class="filter-btn" onclick="filterCategory('cpm2', this)">CPM2 Araçlar</button>
-        <button class="filter-btn" onclick="filterCategory('social', this)">Sosyal Medya</button>
-        <button class="filter-btn" onclick="filterCategory('steam', this)">Steam / Oyun</button>
-    </section>
-
-    <!-- İlan Kartları -->
-    <main class="container">
-        <div class="grid" id="productGrid">
-
-            <!-- İlan 1 -->
-            <div class="card" data-id="1" data-category="cpm2" data-title="CPM2 Audi RS7 Özel Çizimli">
-                <button class="fav-icon-btn" onclick="toggleFavorite('1', event)">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="card-img">
-                    <img src="https://via.placeholder.com/300x180" alt="CPM2 Audi RS7">
-                </div>
-                <div class="card-content">
-                    <h3>CPM2 Audi RS7 Özel Çizimli</h3>
-                    <p class="price">150 ₺</p>
-                    <a href="#" class="buy-btn" target="_blank">İtemSatış'tan Al</a>
-                </div>
-            </div>
-
-            <!-- İlan 2 -->
-            <div class="card" data-id="2" data-category="social" data-title="TikTok 10.000 İzlenme">
-                <button class="fav-icon-btn" onclick="toggleFavorite('2', event)">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="card-img">
-                    <img src="https://via.placeholder.com/300x180" alt="TikTok İzlenme">
-                </div>
-                <div class="card-content">
-                    <h3>TikTok 10.000 İzlenme</h3>
-                    <p class="price">35 ₺</p>
-                    <a href="#" class="buy-btn" target="_blank">İtemSatış'tan Al</a>
-                </div>
-            </div>
-
-            <!-- İlan 3 -->
-            <div class="card" data-id="3" data-category="steam" data-title="Steam Random Key Premium">
-                <button class="fav-icon-btn" onclick="toggleFavorite('3', event)">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="card-img">
-                    <img src="https://via.placeholder.com/300x180" alt="Steam Key">
-                </div>
-                <div class="card-content">
-                    <h3>Steam Random Key Premium</h3>
-                    <p class="price">50 ₺</p>
-                    <a href="#" class="buy-btn" target="_blank">İtemSatış'tan Al</a>
-                </div>
-            </div>
-
-        </div>
-        <p id="noResults" class="no-results" style="display: none;">Aradığınız kriterlere uygun ilan bulunamadı.</p>
+    <!-- Ana İçerik Alanı -->
+    <main>
+        <!-- İlanlar, butonlar, modallar buraya eklenecek -->
     </main>
 
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 ordunuz shop. Tüm hakları saklıdır.
+    </footer>
+
     <script>
-        let favorites = JSON.parse(localStorage.getItem('ordunuz_favs')) || [];
-        let activeCategory = 'all';
-        let isFavOnly = false;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateFavUI();
-        });
-
-        function toggleFavorite(id, event) {
-            event.stopPropagation();
-            const index = favorites.indexOf(id);
-
-            if (index === -1) {
-                favorites.push(id);
-            } else {
-                favorites.splice(index, 1);
-            }
-
-            localStorage.setItem('ordunuz_favs', JSON.stringify(favorites));
-            updateFavUI();
-
-            if (isFavOnly) {
-                filterFavorites(true);
-            }
-        }
-
-        function updateFavUI() {
-            document.getElementById('favCount').innerText = favorites.length;
-            const cards = document.querySelectorAll('.card');
-
-            cards.forEach(card => {
-                const id = card.getAttribute('data-id');
-                const btn = card.querySelector('.fav-icon-btn');
-                const icon = btn.querySelector('i');
-
-                if (favorites.includes(id)) {
-                    btn.classList.add('active');
-                    icon.className = 'fa-solid fa-heart';
-                } else {
-                    btn.classList.remove('active');
-                    icon.className = 'fa-regular fa-heart';
-                }
-            });
-        }
-
-        function filterItems() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title').toLowerCase();
-                const category = card.getAttribute('data-category');
-                const id = card.getAttribute('data-id');
-
-                const matchesSearch = title.includes(query);
-                const matchesCategory = (activeCategory === 'all' || category === activeCategory);
-                const matchesFav = !isFavOnly || favorites.includes(id);
-
-                if (matchesSearch && matchesCategory && matchesFav) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
-        }
-
-        function filterCategory(category, element) {
-            isFavOnly = false;
-            document.querySelector('.fav-btn-nav').classList.remove('active');
-            
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
-
-            activeCategory = category;
-            filterItems();
-        }
-
-        function filterFavorites(keepState = false) {
-            if (!keepState) {
-                isFavOnly = !isFavOnly;
-            }
-            
-            const favBtn = document.querySelector('.fav-btn-nav');
-            if (isFavOnly) {
-                favBtn.classList.add('active');
-            } else {
-                favBtn.classList.remove('active');
-            }
-
-            filterItems();
-        }
+        // İleride yazacağın JavaScript kodları buraya gelecek
     </script>
 </body>
 </html>
